@@ -36,7 +36,8 @@ def upload_file():
         try:
             task = TASKS[flask.request.form['task']]
         except KeyError:
-            return 'ERROR: Task not recognized, should be one of {}'.format(
+            return 'ERROR: Task {} not recognized, should be one of {}'.format(
+                flask.request.form['task'],
                 ', '.join(key for key in TASKS.keys()))
 
         reference_file = flask.request.files['reference_file']
