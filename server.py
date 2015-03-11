@@ -74,9 +74,8 @@ def upload_file():
     <html>
         <head>
             <title>mir_eval</title>
-            <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
         </head>
-        <body>
+        <body style="font-family:sans-serif">
             <div style="padding: 10px">
                 <b><h1>mir_eval</h1></b>
                 Use the form below to evaluate annotations for a given MIR task.<br />
@@ -90,36 +89,26 @@ def upload_file():
                 You can even run mir_eval with minimal Python knowledge by using the <a href="http://craffel.github.io/mir_eval/#quickstart-using-the-evaluators">evaluators</a>.<br />
                 <i>Note: This web service is currently running the <a href="https://github.com/craffel/mir_eval/tree/develop">development version</a> of mir_eval.</i><br /><br />
                 If you use mir_eval in a research project, please cite the following paper:<br />
-                    <p style="padding-left: 20px">
-                        Colin Raffel, Brian McFee, Eric J. Humphrey, Justin Salamon, Oriol Nieto, Dawen Liang, and Daniel P. W. Ellis.<br />
-                        <a href="http://colinraffel.com/publications/ismir2014mir_eval.pdf">"mir_eval: A Transparent Implementation of Common MIR Metrics"</a><br />
-                        Proceedings of the 15th International Conference on Music Information Retrieval, 2014.
-                    </p>
-                <form class="pure-form pure-form-aligned" action="" method="post" enctype="multipart/form-data">
-                    <fieldset>
-                        <div class="pure-control-group">
-                            <label for="reference_file"><b>Reference file</b></label>
-                            <input type="file" id="reference_file">
-                        </div>
-                        <div class="pure-control-group">
-                            <label for="estimated_file"><b>Estimated file</b></label>
-                            <input type="file" name="estimated_file">
-                        </div>
-                        <div class="pure-control-group">
-                            <label for="task"><b>Task</b></label>
-                            <select id="task">
-                                <option value="beat">Beat detection</option>
-                                <option value="chord">Chord recognition</option>
-                                <option value="melody">Melody estimation</option>
-                                <option value="onset">Onset detection</option>
-                                <option value="pattern">Pattern recognition</option>
-                                <option value="segment">Strucural segmentation</option>
-                            </select>
-                        </div>
-                        <div class="pure-controls">
-                            <input type="submit" class="pure-button" value="Get results JSON">
-                        </div>
-                    </fieldset>
+                <p style="padding-left: 20px">
+                    Colin Raffel, Brian McFee, Eric J. Humphrey, Justin Salamon, Oriol Nieto, Dawen Liang, and Daniel P. W. Ellis.<br />
+                    <a href="http://colinraffel.com/publications/ismir2014mir_eval.pdf">"mir_eval: A Transparent Implementation of Common MIR Metrics"</a><br />
+                    Proceedings of the 15th International Conference on Music Information Retrieval, 2014.
+                </p>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <h3>Reference file</h3>
+                        <p><input type="file" name="reference_file"></p>
+                    <h3>Estimated file</h3>
+                        <p><input type="file" name="estimated_file"></p>
+                    <h3>Task</h3>
+                        <select name="task">
+                            <option value="beat">Beat detection</option>
+                            <option value="chord">Chord recognition</option>
+                            <option value="melody">Melody estimation</option>
+                            <option value="onset">Onset detection</option>
+                            <option value="pattern">Pattern recognition</option>
+                            <option value="segment">Strucural segmentation</option>
+                        </select>
+                    <p><input type="submit" value="Get results JSON"></p>
                 </form>
             </div>
         </body>
