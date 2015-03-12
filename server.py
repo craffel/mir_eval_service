@@ -83,7 +83,7 @@ def upload_file():
                 The file format should be as described in <a href="http://craffel.github.io/mir_eval/#module-mir_eval.io">mir_eval.io</a>'s documentation.<br />
                 Some example annotation files can be found in within <a href="https://github.com/craffel/mir_eval/tree/master/tests/data">mir_eval's tests</a>.<br />
                 You can also query this web service as an API, e.g.:<br />
-                <pre style="padding-left: 20px; font-size: 80%">curl -F "task=beat" -F "estimated_file=@est.txt" -F "reference_file=@ref.txt" http://labrosa.ee.columbia.edu/mir_eval</pre>
+                <pre style="padding-left: 20px; font-size: 90%">curl -F "task=beat" -F "estimated_file=@est.txt" -F "reference_file=@ref.txt" http://labrosa.ee.columbia.edu/mir_eval/</pre>
                 task should be one of beat, chord, melody, onset, pattern, or segment.<br />
                 If you're running a large-scale evaluation, it will probably be more efficient to run mir_eval locally.<br />
                 Installation instructions for mir_eval can be found <a href="http://craffel.github.io/mir_eval/#installing-mir-eval">here</a>.<br />
