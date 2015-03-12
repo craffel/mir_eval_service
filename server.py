@@ -67,7 +67,8 @@ def upload_file():
         except Exception as e:
             return 'ERROR when computing metrics: {}'.format(e.message)
 
-        return json.dumps(results)
+        return flask.Response(json.dumps(results),
+                              mimetype='application/json')
 
     return '''
     <!doctype html>
