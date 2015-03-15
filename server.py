@@ -104,7 +104,7 @@ def upload_file():
                         <select name="task">
                             <option value="beat">Beat detection</option>
                             <option value="chord">Chord recognition</option>
-                            <option value="melody">Melody estimation</option>
+                            <option value="melody">Melody extraction</option>
                             <option value="onset">Onset detection</option>
                             <option value="pattern">Pattern recognition</option>
                             <option value="segment">Strucural segmentation</option>
