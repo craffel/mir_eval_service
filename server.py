@@ -88,7 +88,7 @@ def upload_file():
                 If you're running a large-scale evaluation, it will probably be more efficient to run mir_eval locally.<br />
                 Installation instructions for mir_eval can be found <a href="http://craffel.github.io/mir_eval/#installing-mir-eval">here</a>.<br />
                 You can even run mir_eval with minimal Python knowledge by using the <a href="http://craffel.github.io/mir_eval/#quickstart-using-the-evaluators">evaluators</a>.<br />
-                <i>Note: This web service is currently running the <a href="https://github.com/craffel/mir_eval/tree/develop">development version</a> of mir_eval.</i><br /><br />
+                <i>Note: This web service is currently running the <a href="https://github.com/craffel/mir_eval/">most recent commit</a> of mir_eval.</i><br /><br />
                 If you use mir_eval in a research project, please cite the following paper:<br />
                 <p style="padding-left: 20px">
                     Colin Raffel, Brian McFee, Eric J. Humphrey, Justin Salamon, Oriol Nieto, Dawen Liang, and Daniel P. W. Ellis.<br />
