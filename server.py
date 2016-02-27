@@ -3,6 +3,7 @@
 import flask
 import mir_eval
 import json
+import numpy as np
 
 # construct application object
 app = flask.Flask(__name__)
@@ -14,7 +15,10 @@ TASKS = {'beat': mir_eval.beat,
          'melody': mir_eval.melody,
          'onset': mir_eval.onset,
          'pattern': mir_eval.pattern,
-         'segment': mir_eval.segment}
+         'segment': mir_eval.segment,
+         'tempo': mir_eval.tempo,
+         'transcription': mir_eval.transcription,
+         'key': mir_eval.key}
 
 
 def load_annotation_file(task, file):
@@ -26,6 +30,12 @@ def load_annotation_file(task, file):
         return mir_eval.io.load_time_series(file)
     elif task == mir_eval.pattern:
         return mir_eval.io.load_patterns(file)
+    elif task == mir_eval.tempo:
+        return mir_eval.io.load_delimited(file, [float, float, float])
+    elif task == mir_eval.transcription:
+        return mir_eval.io.load_valued_intervals(file)
+    elif task == mir_eval.key:
+        return mir_eval.io.load_key(file)
     else:
         raise ValueError('Task not recognized.')
 
@@ -58,12 +68,23 @@ def upload_file():
 
         try:
             if task == mir_eval.beat or task == mir_eval.onset or \
-               task == mir_eval.pattern:
+               task == mir_eval.pattern or task == mir_eval.key:
                 results = task.evaluate(reference_data, estimated_data)
             elif (task == mir_eval.melody or task == mir_eval.chord or
-                  task == mir_eval.segment):
+                  task == mir_eval.segment or task == mir_eval.transcription):
                 results = task.evaluate(reference_data[0], reference_data[1],
                                         estimated_data[0], estimated_data[1])
+            elif task == mir_eval.tempo:
+                # load_delimited will return a list of lists
+                # [[tempo_1, tempo_2, tempo_weight]]
+                # So, we need to extract the parameters
+                reference_tempi = np.array([reference_data[0][0],
+                                            reference_data[1][0]])
+                reference_weight = reference_data[2][0]
+                estimated_tempi = np.array([estimated_data[0][0],
+                                            estimated_data[1][0]])
+                results = task.evaluate(
+                    reference_tempi, reference_weight, estimated_tempi)
         except Exception as e:
             return 'ERROR when computing metrics: {}'.format(e.message)
 
@@ -84,7 +105,7 @@ def upload_file():
                 Some example annotation files can be found in within <a href="https://github.com/craffel/mir_eval/tree/master/tests/data">mir_eval's tests</a>.<br />
                 You can also query this web service as an API, e.g.:<br />
                 <pre style="padding-left: 20px; font-size: 90%">curl -F "task=beat" -F "estimated_file=@est.txt" -F "reference_file=@ref.txt" http://labrosa.ee.columbia.edu/mir_eval/</pre>
-                task should be one of beat, chord, melody, onset, pattern, or segment.<br />
+                task should be one of beat, chord, melody, onset, pattern, segment, tempo, key, or transcription.<br />
                 If you're running a large-scale evaluation, it will probably be more efficient to run mir_eval locally.<br />
                 Installation instructions for mir_eval can be found <a href="http://craffel.github.io/mir_eval/#installing-mir-eval">here</a>.<br />
                 You can even run mir_eval with minimal Python knowledge by using the <a href="http://craffel.github.io/mir_eval/#quickstart-using-the-evaluators">evaluators</a>.<br />
@@ -108,6 +129,9 @@ def upload_file():
                             <option value="onset">Onset detection</option>
                             <option value="pattern">Pattern recognition</option>
                             <option value="segment">Strucural segmentation</option>
+                            <option value="tempo">Tempo estimation</option>
+                            <option value="transcription">Automatic Transcription</option>
+                            <option value="key">Key detection</option>
                         </select>
                     <p><input type="submit" value="Get results JSON"></p>
                 </form>
