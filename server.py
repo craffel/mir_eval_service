@@ -100,16 +100,16 @@ def upload_file():
         <body style="font-family:sans-serif">
             <div style="padding: 10px">
                 <b><h1>mir_eval</h1></b>
+                <i>Note: This web service is running an out-of-date version of mir_eval and should be treated only as a proof-of-concept.</i><br /><br />
                 Use the form below to evaluate annotations for a given MIR task.<br />
-                The file format should be as described in <a href="http://craffel.github.io/mir_eval/#module-mir_eval.io">mir_eval.io</a>'s documentation.<br />
+                The file format should be as described in <a href="http://craffel.github.io/mir_eval/#module-mir_eval.io">mir_eval</a>'s documentation.<br />
                 Some example annotation files can be found in within <a href="https://github.com/craffel/mir_eval/tree/master/tests/data">mir_eval's tests</a>.<br />
                 You can also query this web service as an API, e.g.:<br />
                 <pre style="padding-left: 20px; font-size: 90%">curl -F "task=beat" -F "estimated_file=@est.txt" -F "reference_file=@ref.txt" http://labrosa.ee.columbia.edu/mir_eval/</pre>
                 task should be one of beat, chord, melody, onset, pattern, segment, tempo, key, or transcription.<br />
                 If you're running a large-scale evaluation, it will probably be more efficient to run mir_eval locally.<br />
                 Installation instructions for mir_eval can be found <a href="http://craffel.github.io/mir_eval/#installing-mir-eval">here</a>.<br />
-                You can even run mir_eval with minimal Python knowledge by using the <a href="http://craffel.github.io/mir_eval/#quickstart-using-the-evaluators">evaluators</a>.<br />
-                <i>Note: This web service is currently running mir_eval 0.4.</i><br /><br />
+                You can even run mir_eval with minimal Python knowledge by using the <a href="https://github.com/craffel/mir_evaluators">evaluators</a>.<br />
                 If you use mir_eval in a research project, please cite the following paper:<br />
                 <p style="padding-left: 20px">
                     Colin Raffel, Brian McFee, Eric J. Humphrey, Justin Salamon, Oriol Nieto, Dawen Liang, and Daniel P. W. Ellis.<br />
