@@ -6,3 +6,5 @@ gunicorn==19.3.0
 itsdangerous==0.24
 mir_eval==0.4
 wsgiref==0.1.2
+numpy
+scipy
